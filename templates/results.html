@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiPlay! - ¡Resultados!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-gradient-kahoot">
+    <div class="container results-container">
+        <h1>¡Muy bien, {{ profile }}!</h1>
+        <p class="results-summary">Has respondido a un total de {{ total_preguntas }} preguntas.</p>
+        <div class="score-details">
+            <p class="correct-score">Respuestas Correctas: <span class="score-number">{{ correctas }}</span></p>
+            <p class="incorrect-score">Respuestas Incorrectas: <span class="score-number">{{ incorrectas }}</span></p>
+        </div>
+        <a href="{{ url_for('index') }}" class="btn play-again-btn">¡Jugar de nuevo!</a>
+    </div>
+</body>
+</html>

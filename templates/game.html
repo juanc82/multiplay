@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiPlay! - ¡A Multiplicar!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-gradient-kahoot">
+    <div class="container game-container">
+        <h2 class="profile-name">¡Hola, {{ profile }}!</h2>
+
+        <div id="game-content">
+            <div class="question-box">
+                <p class="question-text">¿Cuánto es?</p>
+                <p class="multiplication-text"><span id="num1">{{ num1 }}</span> x <span id="num2">{{ num2 }}</span> = ?</p>
+            </div>
+            <div class="options-grid" id="options-grid">
+                {% for option in options %}
+                <button data-answer="{{ option }}" class="btn option-btn option-color-{{ loop.index }}">
+                    {{ option }}
+                </button>
+                {% endfor %}
+            </div>
+            <input type="hidden" id="correct_answer" value="{{ correct_answer }}">
+            <input type="hidden" id="question_id" value="{{ question_id }}">
+        </div>
+
+        <div id="feedback-message" class="feedback-message" style="display:none;"></div>
+    </div>
+
+    <audio id="correctSound" src="{{ url_for('static', filename='audio/correct.mp3') }}" preload="auto"></audio>
+    <audio id="incorrectSound" src="{{ url_for('static', filename='audio/incorrect.mp3') }}" preload="auto"></audio>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

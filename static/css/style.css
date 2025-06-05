@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+body {
+    font-family: 'Fredoka One', cursive; /* Fuente divertida para niños */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+    text-align: center;
+}
+
+/* Colores tipo Kahoot */
+.bg-gradient-kahoot {
+    background: linear-gradient(135deg, #FF69B4, #8A2BE2, #00BFFF, #32CD32); /* Rosa, Morado, Azul, Verde */
+    background-size: 400% 400%;
+    animation: gradientAnimation 15s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente para el contenido */
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    max-width: 600px;
+    width: 90%;
+}
+
+h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+h2 {
+    font-size: 2.2em;
+    margin-bottom: 15px;
+    color: white;
+}
+
+p {
+    font-size: 1.3em;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 15px;
+    font-family: 'Fredoka One', cursive;
+    font-size: 1.8em;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    text-decoration: none; /* Para los enlaces que se ven como botones */
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Estilos específicos para botones de perfil */
+.profile-buttons {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.profile-btn {
+    width: 45%;
+    padding: 25px;
+    font-size: 2em;
+}
+
+.paula-btn {
+    background-color: #FF69B4; /* Rosa */
+}
+
+.sofia-btn {
+    background-color: #8A2BE2; /* Morado */
+}
+
+/* Estilos del juego */
+.question-box {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+}
+
+.question-text {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.multiplication-text {
+    font-size: 3em;
+    font-weight: bold;
+    color: #FFD700; /* Dorado */
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+.options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.option-btn {
+    font-size: 2.2em;
+    padding: 30px;
+}
+
+/* Colores de las opciones inspirados en Kahoot */
+.option-color-1 { background-color: #E2472F; /* Rojo */ }
+.option-color-2 { background-color: #3498DB; /* Azul */ }
+.option-color-3 { background-color: #2ECC71; /* Verde */ }
+.option-color-4 { background-color: #F1C40F; /* Amarillo */ }
+
+/* Estilos de resultados */
+.results-container {
+    padding: 60px;
+}
+
+.results-summary {
+    font-size: 1.6em;
+    margin-bottom: 30px;
+}
+
+.score-details {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 40px;
+}
+
+.correct-score, .incorrect-score {
+    font-size: 1.4em;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.score-number {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.correct-score .score-number {
+    color: #32CD32; /* Verde Lima */
+}
+
+.incorrect-score .score-number {
+    color: #FF6347; /* Tomate */
+}
+
+.play-again-btn {
+    background-color: #00BFFF; /* Azul cielo */
+    margin-top: 30px;
+}
+
+.feedback-message {
+    font-size: 2.5em;
+    font-weight: bold;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 15px;
+    color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    display: none; /* Oculto por defecto, se muestra con JS */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}

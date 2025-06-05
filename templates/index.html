@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiPlay!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body class="bg-gradient-kahoot">
+    <div class="container welcome-container">
+        <h1>¡Bienvenidas a MultiPlay!</h1>
+        <p>¡Elige tu perfil para empezar a practicar!</p>
+        <form action="{{ url_for('select_profile') }}" method="post">
+            <div class="profile-buttons">
+                <button type="submit" name="profile" value="Paula" class="btn profile-btn paula-btn">Soy Paula</button>
+                <button type="submit" name="profile" value="Sofia" class="btn profile-btn sofia-btn">Soy Sofía</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
