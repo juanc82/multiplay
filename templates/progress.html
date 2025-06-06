@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}MultiPlay! - Progreso de {{ profile }}{% endblock %}
+
+{% block content %}
+    <div class="container progress-container">
+        <h1>Progreso de {{ profile }}</h1>
+        <p>¡Aquí puedes ver cómo vas con las tablas de multiplicar!</p>
+
+        <input type="hidden" id="currentProfileName" value="{{ profile }}">
+
+        <table class="progress-table">
+            <thead>
+                <tr>
+                    <th>Tabla del</th>
+                    <th>Correctas</th>
+                    <th>Incorrectas</th>
+                    <th>Total</th>
+                    <th>Progreso</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for tabla_num in range(10) %}
+                {% set tabla_str = tabla_num | string %}
+                {% set data = progress_data.get(tabla_str, {'correctas': 0, 'incorrectas': 0, 'detalles': []}) %}
+                {% set total = data.correctas + data.incorrectas %}
+                {% set porcentaje = (data.correctas / total * 100) if total > 0 else 0 %}
+                <tr data-table-num="{{ tabla_num }}" class="table-row">
+                    <td class="clickable-table-num">{{ tabla_num }}</td>
+                    <td class="correct-cell">{{ data.correctas }}</td>
+                    <td class="incorrect-cell">{{ data.incorrectas }}</td>
+                    <td class="total-cell">{{ total }}</td>
+                    <td>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar" style="width: {{ "%.0f" | format(porcentaje) }}%;"></div>
+                        </div>
+                        {{ "%.0f" | format(porcentaje) }}%
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="{{ url_for('game') }}" class="btn play-again-btn" style="margin-top: 30px;">¡Seguir practicando!</a>
+        <a href="{{ url_for('index') }}" class="btn play-again-btn" style="background-color: #E2472F;">Cambiar Perfil</a>
+    </div>
+
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2 id="modalTitle">Detalle de la Tabla del <span id="modalTableNumber"></span></h2>
+            <ul id="multiplicationList">
+                </ul>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/progress_modal.js') }}"></script>
+{% endblock %}

@@ -1,7 +1,9 @@
+/* static/css/style.css */
+
 @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
 
 body {
-    font-family: 'Fredoka One', cursive; /* Fuente divertida para niños */
+    font-family: 'Fredoka One', cursive;
     margin: 0;
     padding: 0;
     display: flex;
@@ -14,7 +16,7 @@ body {
 
 /* Colores tipo Kahoot */
 .bg-gradient-kahoot {
-    background: linear-gradient(135deg, #FF69B4, #8A2BE2, #00BFFF, #32CD32); /* Rosa, Morado, Azul, Verde */
+    background: linear-gradient(135deg, #FF69B4, #8A2BE2, #00BFFF, #32CD32);
     background-size: 400% 400%;
     animation: gradientAnimation 15s ease infinite;
 }
@@ -26,11 +28,11 @@ body {
 }
 
 .container {
-    background-color: rgba(255, 255, 255, 0.2); /* Fondo semitransparente para el contenido */
+    background-color: rgba(255, 255, 255, 0.2);
     border-radius: 20px;
     padding: 40px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    backdrop-filter: blur(10px);
     max-width: 600px;
     width: 90%;
 }
@@ -58,20 +60,34 @@ p {
     width: 100%;
     padding: 20px;
     margin-bottom: 15px;
-    border: none;
+    border: none; /* Aseguramos que NO haya borde CSS tradicional */
     border-radius: 15px;
     font-family: 'Fredoka One', cursive;
     font-size: 1.8em;
     color: white;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    text-decoration: none; /* Para los enlaces que se ven como botones */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Quitamos 'border' de aquí */
+    text-decoration: none;
+    box-sizing: border-box;
+
+    /* ---- CAMBIO CLAVE AQUÍ: Simulamos el borde con box-shadow por defecto ---- */
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.5); /* Borde blanco sutil por defecto */
 }
 
 .btn:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3), /* Sombra del hover */
+                0 0 0 3px rgba(255, 255, 255, 0.8); /* Borde blanco un poco más fuerte al hover */
 }
+
+/* Para que el reborde aparezca al CLICAR/FOCUS (se mantenga el efecto de foco) */
+.btn:active, .btn:focus {
+    border: none; /* Asegura que no haya borde CSS tradicional */
+    box-shadow: 0 0 0 5px rgba(255, 255, 255, 0.8), /* Reborde más grueso y visible */
+                0 0 0 10px rgba(255, 255, 255, 0.2); /* Una sombra extra para profundidad */
+    transform: translateY(-2px); /* Un pequeño movimiento hacia arriba al clicar */
+}
+
 
 /* Estilos específicos para botones de perfil */
 .profile-buttons {
@@ -88,11 +104,11 @@ p {
 }
 
 .paula-btn {
-    background-color: #FF69B4; /* Rosa */
+    background-color: #FF69B4;
 }
 
 .sofia-btn {
-    background-color: #8A2BE2; /* Morado */
+    background-color: #8A2BE2;
 }
 
 /* Estilos del juego */
@@ -111,7 +127,7 @@ p {
 .multiplication-text {
     font-size: 3em;
     font-weight: bold;
-    color: #FFD700; /* Dorado */
+    color: #FFD700;
     text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
 }
 
@@ -127,10 +143,10 @@ p {
 }
 
 /* Colores de las opciones inspirados en Kahoot */
-.option-color-1 { background-color: #E2472F; /* Rojo */ }
-.option-color-2 { background-color: #3498DB; /* Azul */ }
-.option-color-3 { background-color: #2ECC71; /* Verde */ }
-.option-color-4 { background-color: #F1C40F; /* Amarillo */ }
+.option-color-1 { background-color: #E2472F; }
+.option-color-2 { background-color: #3498DB; }
+.option-color-3 { background-color: #2ECC71; }
+.option-color-4 { background-color: #F1C40F; }
 
 /* Estilos de resultados */
 .results-container {
@@ -162,26 +178,197 @@ p {
 }
 
 .correct-score .score-number {
-    color: #32CD32; /* Verde Lima */
+    color: #32CD32;
 }
 
 .incorrect-score .score-number {
-    color: #FF6347; /* Tomate */
+    color: #FF6347;
 }
 
-.play-again-btn {
-    background-color: #00BFFF; /* Azul cielo */
-    margin-top: 30px;
+/* Se mantiene el centrado de los botones */
+.results-container .btn,
+.progress-container .btn {
+    max-width: 400px;
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 15px;
 }
+
+/* Eliminamos el border: none !important; de play-again-btn */
+/* .play-again-btn {
+    border: none !important;
+} */
+
 
 .feedback-message {
     font-size: 2.5em;
     font-weight: bold;
-    padding: 20px;
-    margin-top: 30px;
+    padding: 30px 40px;
+    margin-top: 0;
     border-radius: 15px;
     color: white;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    display: none; /* Oculto por defecto, se muestra con JS */
+    display: none;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    min-width: 250px;
+    max-width: 80%;
+    box-sizing: border-box;
+}
+
+/* --- Nuevos estilos para el botón flotante de progreso --- */
+.floating-progress-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #00BFFF;
+    color: white;
+    font-size: 2em;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    z-index: 1000;
+}
+
+.floating-progress-btn:hover {
+    background-color: #008DCC;
+    transform: translateY(-3px);
+}
+
+.main-content-wrapper {
+    margin-bottom: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* Estilos para el número de tabla clicable */
+.clickable-table-num {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #FFD700;
+    font-weight: bold;
+}
+.clickable-table-num:hover {
+    color: #FFFFFF;
+}
+
+/* Estilos para el Modal (ventana emergente) */
+.modal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: rgba(255, 255, 255, 0.95);
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+    color: #333;
+    font-size: 1.1em;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.modal-content h2 {
+    color: #8A2BE2;
+    margin-top: 0;
+    font-size: 1.8em;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+#multiplicationList {
+    list-style: none;
+    padding: 0;
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 20px;
+}
+
+#multiplicationList li {
+    padding: 8px 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#multiplicationList li:last-child {
+    border-bottom: none;
+}
+
+.multiplication-text-detail {
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+
+/* --- NUEVOS ESTILOS: Para los iconos de resultado --- */
+.result-icon {
+    font-size: 1.2em; /* Tamaño base para ambos iconos */
+    margin-left: 10px; /* Separación del texto */
+}
+
+.correct-icon {
+    color: #32CD32; /* Verde para aciertos */
+}
+
+.incorrect-icon {
+    color: #FF6347; /* Rojo para errores */
+}
+/* --- FIN NUEVOS ESTILOS --- */
+
+
+
+.correct-detail {
+    color: #32CD32;
+}
+
+.incorrect-detail {
+    color: #FF6347;
 }

@@ -1,20 +1,18 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MultiPlay! - ¡Resultados!</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-</head>
-<body class="bg-gradient-kahoot">
+{% extends 'base.html' %}
+
+{% block title %}MultiPlay! - ¡Resultados!{% endblock %}
+
+{% block content %}
     <div class="container results-container">
         <h1>¡Muy bien, {{ profile }}!</h1>
-        <p class="results-summary">Has respondido a un total de {{ total_preguntas }} preguntas.</p>
+        <p class="results-summary">Has respondido a un total de {{ total_preguntas }} preguntas en esta ronda.</p>
         <div class="score-details">
             <p class="correct-score">Respuestas Correctas: <span class="score-number">{{ correctas }}</span></p>
             <p class="incorrect-score">Respuestas Incorrectas: <span class="score-number">{{ incorrectas }}</span></p>
         </div>
-        <a href="{{ url_for('index') }}" class="btn play-again-btn">¡Jugar de nuevo!</a>
+        <a href="{{ url_for('game') }}" class="btn play-again-btn">¡Jugar de nuevo!</a>
+        <a href="{{ url_for('show_progress') }}" class="btn play-again-btn" style="background-color: #F1C40F;">Ver mi progreso</a>
+        <a href="{{ url_for('index') }}" class="btn play-again-btn" style="background-color: #E2472F;">Cambiar Perfil</a>
     </div>
-</body>
-</html>
+
+    {% endblock %}
